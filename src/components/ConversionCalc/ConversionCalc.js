@@ -1,13 +1,15 @@
 import React from "react";
 
 const numberMultiplier = {
-  half: 0.5,
-  oneTwentieth: 0.05
+  firstMultiplier: 0.5,
+  secondMultiplier: 0.05
 }
 
 function multiply(number, multiplier) {
   const correctNumber = isNaN(parseFloat(number)) ? 0 : parseFloat(number);
-  return correctNumber * numberMultiplier[multiplier];
+  const result = correctNumber * multiplier;
+  const roundedResult = Math.round(result * 1000) / 1000;
+  return roundedResult;
 }
 
 class ShowResult extends React.Component {
@@ -34,15 +36,11 @@ class NumberInput extends React.Component {
 
   render() {
     const enteredNumber = isNaN(parseFloat(this.props.enteredNumber)) ? '' : parseFloat(this.props.enteredNumber);
-    const multiplier = this.props.multiplier;
 
     return (
-      <div className="container">
-        <div className="input-block">
-          <label htmlFor="inputNumber">Введіть число</label>
-          <input type="number" value={enteredNumber} onChange={this.handleChange} name="inputNumber" className="input-field"></input>
-        </div>
-        <ShowResult number={ enteredNumber } multiplier={ numberMultiplier[multiplier] } result={ this.props.result } />
+      <div className="input-block">
+        <label htmlFor="inputNumber">Введіть число:</label>
+        <input type="number" value={enteredNumber} onChange={this.handleChange} name="inputNumber" className="input-field"></input>
       </div>
     )
   }
@@ -52,28 +50,35 @@ class ConversionCalc extends React.Component {
   constructor() {
     super();
     this.state = { firstNumber: '', secondNumber: '' };
-    this.handleHalfChange = this.handleHalfChange.bind(this);
-    this.handleOneTwentiethChange = this.handleOneTwentiethChange.bind(this);
+    this.handleFirstInputChange = this.handleFirstInputChange.bind(this);
+    this.handleSecondInputChange = this.handleSecondInputChange.bind(this);
   }
 
-  handleHalfChange(value) {
+  handleFirstInputChange(value) {
     this.setState({firstNumber: value})
   }
 
-  handleOneTwentiethChange(value) {
+  handleSecondInputChange(value) {
     this.setState({secondNumber: value})
   }
 
   render() {
     const { firstNumber, secondNumber } = this.state;
-    const aHalf = multiply(this.state.firstNumber, 'half');
-    const oneTwentieth = multiply(this.state.secondNumber, 'oneTwentieth');
+    const { firstMultiplier, secondMultiplier } = numberMultiplier;
+    const firstInputResult = multiply(firstNumber, firstMultiplier);
+    const secondInputResult = multiply(secondNumber, secondMultiplier);
 
     return (
       <div className="container">
         <h3>Якийсь калькулятор</h3>
-        <NumberInput multiplier="half" enteredNumber={firstNumber} result={aHalf} onNumberChange={this.handleHalfChange} />
-        <NumberInput multiplier="oneTwentieth" enteredNumber={secondNumber} result={oneTwentieth} onNumberChange={ this.handleOneTwentiethChange } />
+        <div className="calc-block">
+          <NumberInput enteredNumber={ firstNumber } result={ firstInputResult } onNumberChange={ this.handleFirstInputChange } />
+          <ShowResult number={ firstNumber } multiplier={ firstMultiplier } result={ firstInputResult } />
+        </div>
+        <div className="calc-block">
+          <NumberInput enteredNumber={ secondNumber } result={ secondInputResult } onNumberChange={ this.handleSecondInputChange } />
+          <ShowResult number={ secondNumber } multiplier={ secondMultiplier } result={ secondInputResult } />
+        </div>        
       </div>
     )
   }

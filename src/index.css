@@ -24,6 +24,7 @@ code {
   align-items: center;
   justify-content: flex-start;
   margin-top: 15px;
+  margin-bottom: 25px;
 }
 
 .title {
@@ -70,9 +71,14 @@ code {
 .input-field {
   width: 350px;
   padding: 5px;
+  margin-left: 15px;
 }
 
 .last-child {
   margin: 0;
   border: none;
+}
+
+.calc-block {
+  padding: 20px;
 }
