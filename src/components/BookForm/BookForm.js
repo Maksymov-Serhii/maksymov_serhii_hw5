@@ -3,7 +3,7 @@ import React from "react";
 function OutputData(props) {
   return <div>
     <h3>JSON рецензія:</h3>
-    <p>{props.outputData}</p>
+    <p>{props.data}</p>
   </div>
 }
 
@@ -70,7 +70,7 @@ class BookForm extends React.Component {
             <input type="submit" value="Надіслати форму" className="button" />
           </div>
         </form>
-        <OutputData outputData={this.review} />
+        <OutputData data={this.review} />
       </div>
     )
   }
