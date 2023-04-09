@@ -23,16 +23,15 @@ class BookForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(JSON.stringify(this.state));
     const userBookReview = JSON.stringify(this.state);
-    const pBlock = document.createElement('p');
-    pBlock.innerText = userBookReview;
-    document.getElementById('formOutput').append(pBlock);
+    const paragraph = document.createElement('p');
+    const formOutput = document.getElementById('formOutput');
+    paragraph.innerText = userBookReview;
+    formOutput.append(paragraph);
     this.setState(this.defaultState);
   }
   
   render() {
-    // console.log(this.state);
     return (
       <div className="container">
         <h3>Рецензія на книгу</h3>
