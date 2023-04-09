@@ -1,5 +1,12 @@
 import React from "react";
 
+function OutputData(props) {
+  return <div>
+    <h3>JSON рецензія:</h3>
+    <p>{props.outputData}</p>
+  </div>
+}
+
 class BookForm extends React.Component {
   constructor() {
     super();
@@ -13,6 +20,7 @@ class BookForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.defaultState = this.state;
+    this.review = '';
   }
 
   handleChange(event) {
@@ -23,11 +31,7 @@ class BookForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const userBookReview = JSON.stringify(this.state);
-    const paragraph = document.createElement('p');
-    const formOutput = document.getElementById('formOutput');
-    paragraph.innerText = userBookReview;
-    formOutput.append(paragraph);
+    this.review = JSON.stringify(this.state);
     this.setState(this.defaultState);
   }
   
@@ -66,9 +70,7 @@ class BookForm extends React.Component {
             <input type="submit" value="Надіслати форму" className="button" />
           </div>
         </form>
-        <div id="formOutput">
-          <h3>JSON рецензії:</h3>
-        </div>
+        <OutputData outputData={this.review} />
       </div>
     )
   }
