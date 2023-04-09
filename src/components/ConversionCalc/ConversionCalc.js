@@ -1,13 +1,13 @@
 import React from "react";
 
 const numberMultiplier = {
-  half: '0.5',
-  oneTwentieth: '0.05'
+  half: 0.5,
+  oneTwentieth: 0.05
 }
 
 function multiply(number, multiplier) {
   const correctNumber = isNaN(parseFloat(number)) ? 0 : parseFloat(number);
-  return correctNumber * parseFloat(numberMultiplier[multiplier]);
+  return correctNumber * numberMultiplier[multiplier];
 }
 
 class ShowResult extends React.Component {
@@ -39,10 +39,10 @@ class NumberInput extends React.Component {
     return (
       <div className="container">
         <div className="input-block">
-          <label htmlFor="firstNumber">Введіть число</label>
-          <input type="number" value={enteredNumber} onChange={this.handleChange} name="firstNumber" className="input-field"></input>
+          <label htmlFor="inputNumber">Введіть число</label>
+          <input type="number" value={enteredNumber} onChange={this.handleChange} name="inputNumber" className="input-field"></input>
         </div>
-        <ShowResult number={enteredNumber} multiplier={numberMultiplier[multiplier]} result={ this.props.result } />
+        <ShowResult number={ enteredNumber } multiplier={ numberMultiplier[multiplier] } result={ this.props.result } />
       </div>
     )
   }
