@@ -1,4 +1,5 @@
 import BookForm from '../BookForm/BookForm';
+import ConversionCalc from '../ConversionCalc/ConversionCalc';
 import './App.css';
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
       <h1 className='title'>CyberBionic systematics</h1>
       <h3 className='title'>Welcome</h3>
       <BookForm />
+      <ConversionCalc />
     </div>
   );
 }
