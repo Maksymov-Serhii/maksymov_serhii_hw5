@@ -72,7 +72,7 @@ code {
   padding: 5px;
 }
 
-.form-block .input-block:last-child {
+.last-child {
   margin: 0;
   border: none;
 }

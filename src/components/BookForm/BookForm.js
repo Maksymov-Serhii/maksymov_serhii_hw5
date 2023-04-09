@@ -62,7 +62,7 @@ class BookForm extends React.Component {
             <label htmlFor="isAgree">Згода на публікацію вашої рецензії</label>
             <input name="isAgree" type="checkbox" checked={this.state.isAgree} onChange={this.handleChange}></input>
           </div>
-          <div className="input-block">
+          <div className="input-block last-child">
             <input type="submit" value="Надіслати форму" className="button" />
           </div>
         </form>
